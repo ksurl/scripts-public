@@ -95,5 +95,3 @@ foreach ($app in $apps) {
 Write-Host "Disabling App Auto-install after 1st login"
 reg add HKLM\Software\Policies\Microsoft\Windows\CloudContent /v DisableWindowsConsumerFeatures /t REG_DWORD /d 1 /f
 Write-Host ""
-
-# end of script
