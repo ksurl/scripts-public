@@ -1,3 +1,3 @@
-# windows-config
+# windows-scripts
 
-windows configuration scripts
+cmd and powershell scripts
