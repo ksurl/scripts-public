@@ -1,0 +1,2 @@
+systeminfo | @findstr "Time:"
+pause
