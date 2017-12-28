@@ -70,6 +70,20 @@ $apps = @(
     "TheNewYorkTimes.NYTCrossword"
     "AdobeSystemsIncorporated.AdobePhotoshopExpress"
     "ActiproSoftwareLLC.562882FEEB491"
+    "DB6EA5DB.CyberLinkMediaSuiteEssentials"
+    "Facebook.Facebook"
+    "flaregamesGmbH.RoyalRevolt2"
+    "Playtika.CaesarsSlotsFreeCasino"
+    "A278AB0D.MarchofEmpires"
+    "KeeperSecurityInc.Keeper"
+    "ThumbmunkeysLtd.PhototasticCollage"
+    "XINGAG.XING"
+    "89006A2E.AutodeskSketchBook"
+    "D5EA27B7.Duolingo-LearnLanguagesforFree"
+    "DolbyLaboratories.DolbyAccess"
+    "SpotifyAB.SpotifyMusic"
+    "A278AB0D.DisneyMagicKingdoms"
+    "WinZipComputing.WinZipUniversal"
     
     # apps which cannot be removed using Remove-AppxPackage
     #"Microsoft.BioEnrollment"
@@ -189,6 +203,11 @@ Write-Host ""
 # Disable suggested apps
 Write-Host "Disable suggested apps" -ForegroundColor Green
 reg add "hklm\software\policies\microsoft\windows\Cloud Content" /v DisableWindowsConsumerFeatures /t REG_DWORD /d 1 /f
+Write-Host ""
+
+# Restart Explorer
+Write-Host "Restarting Explorer" -ForegroundColor Cyan
+Stop-Process -Name "explorer"
 Write-Host ""
 
 Write-Host "Configuration complete. Please reboot to take effect." -ForegroundColor Magenta
