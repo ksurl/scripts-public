@@ -27,9 +27,9 @@ $apps = @(
     "Microsoft.WindowsPhone"
     #"Microsoft.WindowsSoundRecorder"
     #"Microsoft.WindowsStore"
-    #"Microsoft.XboxApp"
+    "Microsoft.XboxApp"
     #"Microsoft.ZuneMusic"
-    #"Microsoft.ZuneVideo"
+    "Microsoft.ZuneVideo"
     "microsoft.windowscommunicationsapps"
     "Microsoft.MinecraftUWP"
     "Microsoft.WindowsFeedbackHub"
@@ -144,6 +144,9 @@ reg delete "hkcu\software\microsoft\windows\currentversion\run" /v "OneDriveSetu
 # Disable Game Mode
 Write-Host "Disabling Game Mode..." -ForegroundColor Green
 reg add "hkcu\software\microsoft\GameBar" /v AllowAutoGameMode /t REG_DWORD /d 0 /f
+# Disable Game Bar
+Write-Host "Disabling Game Bar" -ForegroundColor Green
+reg add "hkcu\system\GameConfigStore" /v GameDVR_Enabled /t REG_DWORD /d 0 /f
 # Disable lock screen notifications
 Write-Host "Disabling lock screen notifications..." -ForegroundColor Green
 reg add "hkcu\software\microsoft\windows\currentversion\Notifications\Settings" /v "NOC_GLOBAL_SETTING_ALLOW_TOASTS_ABOVE_LOCK" /t REG_DWORD /d 0 /f
@@ -203,6 +206,16 @@ Write-Host ""
 # Disable suggested apps
 Write-Host "Disable suggested apps" -ForegroundColor Green
 reg add "hklm\software\policies\microsoft\windows\Cloud Content" /v DisableWindowsConsumerFeatures /t REG_DWORD /d 1 /f
+Write-Host ""
+
+# Disable Xbox Game Bar and DVR
+Write-Host "Disabling Xbox Game Bar and DVR"
+reg add "hklm\software\policies\microsoft\windows\GameDVR" /v AllowgameDVR /t REG_DWORD /d 0 /f
+Write-Host ""
+
+# Disable Xbox Game Monitoring
+Write-Host "Disabling Xbox Game Monitoring..." -ForegroundColor Green
+reg add "hklm\system\currentcontrolset\services\xbgm" /v Start /t REG_DWORD /d 4 /f
 Write-Host ""
 
 # Restart Explorer
