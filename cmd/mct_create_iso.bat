@@ -1,0 +1,1 @@
+"%~dp0MediaCreationTool.exe"/Selfhost /Eula Accept /Retail /MediaLangCode en-us /MediaArch x64 /MediaEdition Professional

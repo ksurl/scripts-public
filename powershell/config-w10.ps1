@@ -108,8 +108,8 @@ $services = @(
     "diagnosticshub.standardcollector.service" # Microsoft (R) Diagnostics Hub Standard Collector Service
     "DiagTrack"                                # Diagnostics Tracking Service
     "dmwappushservice"                         # WAP Push Message Routing Service (see known issues)
-    "HomeGroupListener"                        # HomeGroup Listener
-    "HomeGroupProvider"                        # HomeGroup Provider
+    #"HomeGroupListener"                        # HomeGroup Listener - removed in 1803
+    #"HomeGroupProvider"                        # HomeGroup Provider - removed in 1803
     "lfsvc"                                    # Geolocation Service
     "MapsBroker"                               # Downloaded Maps Manager
     "NetTcpPortSharing"                        # Net.Tcp Port Sharing Service
@@ -138,6 +138,11 @@ Write-Host ""
 
 # Configure user registry
 Write-Host "Configuring user registry" -ForegroundColor Cyan
+# Disable web search
+Write-Host "Disabling web search..." -ForegroundColor Green
+reg add hkcu\software\microsoft\windows\currentversion\Search /v AllowSearchToUseLocation /t REG_DWORD /d 0 /f
+reg add hkcu\software\microsoft\windows\currentversion\Search /v BingSearchEnabled /t REG_DWORD /d 0 /f
+reg add hkcu\software\microsoft\windows\currentversion\Search /v CortanaConsent /t REG_DWORD /d 0 /f
 # Disable OneDrive Setup
 Write-Host "Disabling OneDrive setup on login..." -ForegroundColor Green
 reg delete "hkcu\software\microsoft\windows\currentversion\run" /v "OneDriveSetup" /f
@@ -185,6 +190,12 @@ Write-Host ""
 # Disable Cortana:
 Write-Host "Disable Cortana" -ForegroundColor Cyan
 reg add "hklm\software\policies\microsoft\windows\Windows Search" /v AllowCortana /t REG_DWORD /d 0 /f
+reg add "hklm\software\policies\microsoft\windows\Windows Search" /v ConnectedSearchUseWeb /t REG_DWORD /d 0 /f
+Write-Host ""
+
+# Disable Timeline
+Write-Host "Disable Timeline" -ForegroundColor Cyan
+reg add "hklm\software\policies\microsoft\windows\system" /v EnableActivityFeed /t REG_DWORD /d 0 /f
 Write-Host ""
 
 # Disable Sign-in Animation
