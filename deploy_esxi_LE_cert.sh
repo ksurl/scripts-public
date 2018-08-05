@@ -7,6 +7,7 @@
 
 # change this:
 domain="DOMAIN"
+esxihost="HOSTNAME"
 
 ssh $esxihost "mv /etc/vmware/ssl/castore.pem /etc/vmware/ssl/castore.pem.back"
 ssh $esxihost "mv /etc/vmware/ssl/rui.crt /etc/vmware/ssl/rui.crt.back"
