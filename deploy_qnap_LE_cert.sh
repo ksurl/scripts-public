@@ -1,19 +1,21 @@
 #!/bin/bash
 
-# this script assumes you have ssh config setup for HOST and the NAS has added the public key to authorized_keys
+# ASSUMPTIONS:
+# - passwordless ssh key
+# - ssh config file specifies username and ssh key for $qnap
+# - runs as user (using ~ for default acme.sh install location)
 
-# Replace DOMAIN and PATH to match your configuration
+# change this:
+domain="DOMAIN"
+qnap="HOSTNAME"
 
-# Domains to grab cert for
-DOMAIN="example.com"
+cat ~/.acme.sh/$domain/$domain.key ~/.acme.sh/$domain/$domain.cer ~/.acme.sh/$domain/ca.cer > /tmp/stunnel.pem
+ssh $qnap "mv /etc/stunnel/stunnel.pem /etc/stunnel/stunnel.pem.back"
+scp /tmp/stunnel.pem $qnap:/etc/stunnel/stunnel.pem &>/dev/null
 
-# Path to letsencrypt cert files
-CERTPATH="$PATH/.acme.sh/$DOMAIN"
+ssh $qnap chmod 600 /etc/stunnel/stunnel.pem &>/dev/null
+ssh $qnap /etc/init.d/Qthttpd.sh stop &>/dev/null
+ssh $qnap /etc/init.d/stunnel.sh restart &>/dev/null
+ssh $qnap /etc/init.d/Qthttpd.sh start &>/dev/null
 
-cat "$CERTPATH/$DOMAIN.key" "$CERTPATH/$DOMAIN.cer" "$CERTPATH/ca.cer" > /tmp/stunnel.pem
-scp /tmp/stunnel.pem HOST:/etc/stunnel/stunnel.pem &>/dev/null
-ssh HOST chmod 600 /etc/stunnel/stunnel.pem &>/dev/null
-ssh HOST /etc/init.d/Qthttpd.sh stop &>/dev/null
-ssh HOST /etc/init.d/stunnel.sh restart &>/dev/null
-ssh HOST /etc/init.d/Qthttpd.sh start &>/dev/null
 rm -f /tmp/stunnel.pem
