@@ -2,7 +2,7 @@
 
 # ASSUMPTIONS:
 # - passwordless ssh key
-# - ssh config file specifies username and ssh key for $esxihost
+# - ssh config file specifies username and ssh key for $router
 # - runs as user (using ~ for default acme.sh install location)
 
 # change this:
