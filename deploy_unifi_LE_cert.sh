@@ -13,17 +13,20 @@ unifihost="HOSTNAME"
 keystore=/var/lib/unifi/keystore
 
 # cert files
-key=~/.acme.sh/$domain/$domain.key
-cert=~/.acme.sh/$domain/$domain.cer
-chain=~/.acme.sh/$domain/ca.cer
+localkey=~/.acme.sh/$domain/$domain.key
+localcert=~/.acme.sh/$domain/$domain.cer
+localchain=~/.acme.sh/$domain/ca.cer
+remotekey=/tmp/$domain.key
+remotecert=/tmp/$domain.cer
+remotechain=/tmp/ca.cer
 
 # unifi config
 alias=unifi
 password=aircontrolenterprise
 
 # temp files
-p12=$(mktemp)
-ca=$(mktemp)
+p12=/tmp/unifi.p12
+ca=/tmp/unifica
 
 # create trustid x3 temp ca file
 cat > "$ca" <<'_EOF'
@@ -56,20 +59,32 @@ ssh $unifihost systemctl stop unifi
 ssh $unifihost cp $keystore $keystore.bak
 
 # export cert files to PKCS12 file
-openssl pkcs12 -export -in $cert -inkey $key -CAfile $chain -out $p12 -passout pass:$password -caname root -name $alias
+openssl pkcs12 -export -in $localcert -inkey $localkey -CAfile $localchain -out $p12 -passout pass:$password -caname root -name $alias
 	
 # delete previous cert from keystore
 ssh $unifihost keytool -delete -alias $alias -keystore $keystore -deststorepass $password
-	
+
+# copy cert files to unifi host
+scp $p12 $unifihost:/tmp/
+scp $ca $unifihost:/tmp/
+scp $localkey $unifihost:/tmp/
+scp $localcert $unifihost:/tmp/
+scp $localchain $unifihost:/tmp/
+
 # import PKCS12 file into keystore
 ssh $unifihost keytool -importkeystore -srckeystore $p12 -srcstoretype PKCS12 -srcstorepass $password -destkeystore $keystore -deststorepass $password -destkeypass $password -alias $alias -trustcacerts
 	
 # import ca into keystore
-ssh $unifihost java -jar /usr/lib/unifi/lib/ace.jar import_cert $cert $chain $ca
+ssh $unifihost java -jar /usr/lib/unifi/lib/ace.jar import_cert $remotecert $remotechain $ca
 
 # delete temp files
 rm -f $p12
 rm -f $ca
+ssh $unifihost rm -f $remotekey
+ssh $unifihost rm -f $remotecert
+ssh $unifihost rm -f $remotechain
+ssh $unifihost rm -f $p12
+ssh $unifihost rm -f $ca
 
 # Restart the UniFi Controller to pick up the updated keystore
 ssh $unifihost systemctl start unifi
