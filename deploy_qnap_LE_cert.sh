@@ -9,8 +9,12 @@
 domain="DOMAIN"
 qnap="HOSTNAME"
 
-cat ~/.acme.sh/$domain/$domain.key ~/.acme.sh/$domain/$domain.cer ~/.acme.sh/$domain/ca.cer > /tmp/stunnel.pem
-ssh $qnap "mv /etc/stunnel/stunnel.pem /etc/stunnel/stunnel.pem.back"
+key=~/.acme.sh/$domain/$domain.key
+cert=~/.acme.sh/$domain/$domain.cer
+ca=~/.acme.sh/$domain/ca.cer
+
+cat $key $cert $ca > /tmp/stunnel.pem
+ssh $qnap mv /etc/stunnel/stunnel.pem /etc/stunnel/stunnel.pem.bak
 scp /tmp/stunnel.pem $qnap:/etc/stunnel/stunnel.pem &>/dev/null
 
 ssh $qnap chmod 600 /etc/stunnel/stunnel.pem &>/dev/null
