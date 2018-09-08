@@ -2,7 +2,7 @@
 
 # This script installs the unifi controller software with dependencies: 
 # Ubuntu 18.04 LTS
-# MongoDB 3.4.16
+# MongoDB 3.4.17
 # OpenJDK Java 8
 
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6

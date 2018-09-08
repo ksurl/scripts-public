@@ -18,6 +18,8 @@ cat $key $cert > /tmp/server.pem
 ssh $router sudo cp /etc/lighttpd/server.pem /etc/lighttpd/server.pem.bak
 scp /tmp/server.pem $router:/tmp/
 ssh $router sudo mv /tmp/server.pem /etc/lighttpd/server.pem
+ssh $router sudo chown root:root /etc/lighttpd/server.pem
+ssh $router sudo chmod 400 /etc/lighttpd/server.pem
 
 # restart web gui
 ssh $router sudo kill -SIGTERM $(ps -e | grep lighttpd | awk '{print $1;}')
