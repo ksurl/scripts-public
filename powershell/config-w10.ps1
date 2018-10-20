@@ -4,102 +4,111 @@
 Write-Host "Removing default apps" -ForegroundColor Cyan
 $apps = @(
     # default Windows 10 apps
-    #"Microsoft.3DBuilder",
-    "Microsoft.Appconnector",
-    "Microsoft.BingFinance",
-    "Microsoft.BingNews",
-    "Microsoft.BingSports",
-    #"Microsoft.BingWeather",
-    "Microsoft.FreshPaint",
-    "Microsoft.Getstarted",
-    "Microsoft.MicrosoftOfficeHub",
-    "Microsoft.MicrosoftSolitaireCollection",
-    #"Microsoft.MicrosoftStickyNotes",
-    #"Microsoft.Office.OneNote",
-    "Microsoft.OneConnect",
-    "Microsoft.People",
-    "Microsoft.SkypeApp",
-    #"Microsoft.Windows.Photos",
-    #"Microsoft.WindowsAlarms",
-    #"Microsoft.WindowsCalculator",
-    "Microsoft.WindowsCamera",
-    "Microsoft.WindowsMaps",
-    "Microsoft.WindowsPhone",
-    #"Microsoft.WindowsSoundRecorder",
-    #"Microsoft.WindowsStore",
-    #"Microsoft.XboxApp",
-    #"Microsoft.ZuneMusic",
-    #"Microsoft.ZuneVideo",
-    "microsoft.windowscommunicationsapps",
-    "Microsoft.MinecraftUWP",
-    "Microsoft.WindowsFeedbackHub",
+    #"Microsoft.3DBuilder"
+    "Microsoft.Appconnector"
+    "Microsoft.BingFinance"
+    "Microsoft.BingNews"
+    "Microsoft.BingSports"
+    #"Microsoft.BingWeather"
+    "Microsoft.FreshPaint"
+    "Microsoft.Getstarted"
+    "Microsoft.BingTranslator"
+    "Microsoft.MicrosoftOfficeHub"
+    "Microsoft.MicrosoftSolitaireCollection"
+    "Microsoft.RemoteDesktop"
+    "Microsoft.MicrosoftPowerBIForWindows"
+    "Microsoft.MinecraftUWP"
+    #"Microsoft.MicrosoftStickyNotes"
+    "Microsoft.NetworkSpeedTest"
+    #"Microsoft.Office.OneNote"
+    "Microsoft.OneConnect"
+    "Microsoft.People"
+    #"Microsoft.Print3D"
+    "Microsoft.SkypeApp"
+    #"Microsoft.Windows.Photos"
+    #"Microsoft.WindowsAlarms"
+    #"Microsoft.WindowsCalculator"
+    "Microsoft.WindowsCamera"
+    "Microsoft.WindowsMaps"
+    "Microsoft.WindowsPhone"
+    #"Microsoft.WindowsSoundRecorder"
+    #"Microsoft.WindowsStore"
+    #"Microsoft.XboxApp"
+    "Microsoft.XboxIdentityProvider"
+    "Microsoft.XboxSpeechToTextOverlay"
+    #"Microsoft.ZuneMusic"
+    #"Microsoft.ZuneVideo"
+    "microsoft.windowscommunicationsapps"
+    "Microsoft.MinecraftUWP"
+    "Microsoft.WindowsFeedbackHub"
 
     # Threshold 2 apps
-    "Microsoft.CommsPhone",
-    "Microsoft.ConnectivityStore",
-    "Microsoft.Messaging",
-    "Microsoft.Office.Sway",
+    "Microsoft.CommsPhone"
+    "Microsoft.ConnectivityStore"
+    "Microsoft.GetHelp"
+    "Microsoft.Messaging"
+    "Microsoft.Office.Sway"
+    "Microsoft.OneConnect"
+    "Microsoft.WindowsFeedbackHub"
     
+    # Creator's Update apps
+    #"Microsoft.MSPaint"
+
     # Redstone apps
-    "Microsoft.BingFoodAndDrink",
-    "Microsoft.BingTravel",
-    "Microsoft.BingHealthAndFitness",
-    "Microsoft.WindowsReadingList",
-    "Micorsoft.NetworkSpeedTest",
-    "Microsoft.RemoteDesktop",
-    "Microsoft.MicrosoftPowerBIForWindows",
-
+    "Microsoft.BingFoodAndDrink"
+    "Microsoft.BingTravel"
+    "Microsoft.BingHealthAndFitness"
+    "Microsoft.WindowsReadingList"
+    "Microsoft.Whiteboard"
+    
     # Redstone 5
-    "Microsoft.XboxGameOverlay",
-    "Microsoft.XboxGamingOverlay",
-    "Microsoft.YourPhone",
-    "Microsoft.Wallet",
-
+    "Microsoft.XboxGameOverlay"
+    "Microsoft.XboxGamingOverlay"
+    "Microsoft.YourPhone"
+    "Microsoft.Wallet"
 
     # non-Microsoft
-    "PandoraMediaInc.29680B314EFC2",
-    "4DF9E0F8.Netflix",
-    "6Wunderkinder.Wunderlist",
-    "Duolingo",
-    "46928bounde.EclipseManager",
-    "D5EA27B7.Duolingo-LearnLanguagesforFree",
-    "Drawboard.DrawboardPDF",
-    "2FE3CB00.PicsArt-PhotoStudio",
-    "D52A8D61.FarmVille2CountryEscape",
-    "TuneIn.TuneInRadio",
-    "GAMELOFTSA.Asphalt8Airborne",
-    "*.Twitter",
-    "Flipboard.Flipboard",
-    "ShazamEntertainmentLtd.Shazam",
-    "king.com.CandyCrushSaga",
-    "king.com.CandyCrushSodaSaga",
-    "king.com.*",
-    "ClearChannelRadioDigital.iHeartRadio",
-    "TheNewYorkTimes.NYTCrossword",
-    "AdobeSystemsIncorporated.AdobePhotoshopExpress",
-    "ActiproSoftwareLLC.562882FEEB491",
-    "DB6EA5DB.CyberLinkMediaSuiteEssentials",
-    "Facebook.Facebook",
-    "flaregamesGmbH.RoyalRevolt2",
-    "Playtika.CaesarsSlotsFreeCasino",
-    "A278AB0D.MarchofEmpires",
-    "KeeperSecurityInc.Keeper",
-    "ThumbmunkeysLtd.PhototasticCollage",
-    "XINGAG.XING",
-    "89006A2E.AutodeskSketchBook",
-    "D5EA27B7.Duolingo-LearnLanguagesforFree",
-    "DolbyLaboratories.DolbyAccess",
-    "SpotifyAB.SpotifyMusic",
-    "A278AB0D.DisneyMagicKingdoms",
+    "9E2F88E3.Twitter"
+    "PandoraMediaInc.29680B314EFC2"
+    "Flipboard.Flipboard"
+    "ShazamEntertainmentLtd.Shazam"
+    "king.com.CandyCrushSaga"
+    "king.com.CandyCrushSodaSaga"
+    "king.com.*"
+    "ClearChannelRadioDigital.iHeartRadio"
+    "4DF9E0F8.Netflix"
+    "6Wunderkinder.Wunderlist"
+    "Drawboard.DrawboardPDF"
+    "2FE3CB00.PicsArt-PhotoStudio"
+    "D52A8D61.FarmVille2CountryEscape"
+    "TuneIn.TuneInRadio"
+    "GAMELOFTSA.Asphalt8Airborne"
+    "TheNewYorkTimes.NYTCrossword"
+    "DB6EA5DB.CyberLinkMediaSuiteEssentials"
+    "Facebook.Facebook"
+    "flaregamesGmbH.RoyalRevolt2"
+    "Playtika.CaesarsSlotsFreeCasino"
+    "A278AB0D.MarchofEmpires"
+    "KeeperSecurityInc.Keeper"
+    "ThumbmunkeysLtd.PhototasticCollage"
+    "XINGAG.XING"
+    "89006A2E.AutodeskSketchBook"
+    "D5EA27B7.Duolingo-LearnLanguagesforFree"
+    "46928bounde.EclipseManager"
+    "ActiproSoftwareLLC.562882FEEB491"
+    "DolbyLaboratories.DolbyAccess"
+    "SpotifyAB.SpotifyMusic"
+    "A278AB0D.DisneyMagicKingdoms"
     "WinZipComputing.WinZipUniversal"
+    "AdobeSystemsIncorporated.AdobePhotoshopExpress"
     
     # apps which cannot be removed using Remove-AppxPackage
-    #"Microsoft.BioEnrollment",
-    #"Microsoft.MicrosoftEdge",
-    #"Microsoft.Windows.Cortana",
-    #"Microsoft.WindowsFeedback",
-    #"Microsoft.XboxGameCallableUI",
-    #"Microsoft.XboxIdentityProvider",
+    #"Microsoft.BioEnrollment"
+    #"Microsoft.MicrosoftEdge"
+    #"Microsoft.Windows.Cortana"
+    #"Microsoft.WindowsFeedback"
+    #"Microsoft.XboxGameCallableUI"
+    #"Microsoft.XboxIdentityProvider"
     #"Windows.ContactSupport"
 )
 
@@ -107,7 +116,7 @@ foreach ($app in $apps) {
     Write-Host "Trying to remove $app" -ForegroundColor Green
     Get-AppxPackage -Name $app -AllUsers | Remove-AppxPackage
     Get-AppxPackage -Name $app | Remove-AppxPackage
-    Get-AppXProvisionedPackage -Online | Where-Object DisplayName -eq $app | Remove-AppxProvisionedPackage -Online
+    Get-AppXProvisionedPackage -Online | where { $_.DisplayName -eq $app } | Remove-AppxProvisionedPackage -Online
 }
 
 # disable services
@@ -145,6 +154,21 @@ Write-Host ""
 Write-Host "Disabling OneDrive..." -ForegroundColor Green
 reg add hklm\software\policies\microsoft\windows\OneDrive /v DisableFileSyncNGSC /t REG_DWORD /d 1 /f
 Write-Host ""
+
+# Disable Delivery Optimization
+Write-Host "Disabling Delivery Optimization..." -ForegroundColor Green
+reg add hklm\software\microsoft\windows\currentversion\DeliveryOptimization\Config /v DODownloadMode /t REG_DWORD /d 0 /f
+Write-Host ""
+
+# Disable Game DVR
+#Write-Host "Disabling Game DVR..." -ForegroundColor Green
+#reg add hklm\software\policies\microsoft\windows\GameDVR /v AllowgameDVR /t REG_DWORD /d 0 /f
+#Write-Host ""
+
+# Disable automatic restart sign-on 
+#Write-Host "Disabling automatic restart sign-on..." -ForegroundColor Cyan
+#reg add hklm\software\microsoft\windows\currentversion\policies\system /v DisableAutomaticRestartSignOn /t REG_DWORD /d 1 /f
+#Write-Host ""
 
 # Configure default user registry
 Write-Host "Configuring user registry" -ForegroundColor Cyan
