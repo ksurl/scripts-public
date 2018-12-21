@@ -48,6 +48,9 @@ $apps = @(
     "Microsoft.RemoteDesktop"
     "Microsoft.MicrosoftPowerBIForWindows"
 
+    # Redstone 2
+    "Microsoft.YourPhone"
+
     # non-Microsoft
     "PandoraMediaInc.29680B314EFC2"
     "4DF9E0F8.Netflix"
