@@ -1,6 +1,6 @@
 #!/bin/bash
 
-current_ip=$(curl -fsSL https://ifconfig.io/ip)
+current_ip=$(curl -fsSL http://checkip.amazonaws.com)
 cached_ip=$(cat ~/.config/ddns/ip.txt)
 
 API="PUSHBULLET_API_KEY"
