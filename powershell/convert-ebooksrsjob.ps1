@@ -5,10 +5,12 @@ param([string]$src=$PSScriptRoot,[string]$inputformat="epub",[string]$outputform
 
 $books = Get-ChildItem -Path $src -Include "*.$inputformat"
 
-foreach ($book in $books) {
+ $books | Start-RSJob -Name { $_.name } -Throttle 8 -ScriptBlock {
     $dst = $book.fullname.trimend($inputformat) + ".$outputformat"
     if (!(Test-Path $dst)) {
         Write-Host "Converting $($book.name) to $($book.basename).$outputformat"
         ebook-convert.exe $book.fullname $dst
     }
-}
+} | Wait-RSJob -ShowProgress
+
+Get-RSJob | Wait-RSJob
