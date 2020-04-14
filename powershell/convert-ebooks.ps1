@@ -4,11 +4,11 @@
 param([string]$src=$PSScriptRoot,[string]$inputformat="epub",[string]$outputformat="mobi")
 
 $books = Get-ChildItem -Path $src -Include "*.$inputformat"
-
+Set-Location $src
 foreach ($book in $books) {
-    $dst = $book.fullname.trimend($inputformat) + ".$outputformat"
+    $dst = $book.fullname.replace(".$inputformat",".$outputformat")
     if (!(Test-Path $dst)) {
         Write-Host "Converting $($book.name) to $($book.basename).$outputformat"
-        ebook-convert.exe $book.fullname $dst
+        ebook-convert.exe $book.name $dst
     }
 }
