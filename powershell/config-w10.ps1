@@ -122,15 +122,15 @@ $apps = @(
     "Microsoft.Microsoft3DViewer"
     "Microsoft.MicrosoftOfficeHub"
     "Microsoft.MicrosoftSolitaireCollection"
-    "Microsoft.MixedReality.Portal"
-    "Microsoft.MSPaint"
+    #"Microsoft.MixedReality.Portal"
+    #"Microsoft.MSPaint"
     "Microsoft.OneConnect"
     "Microsoft.Print3D"
     "Microsoft.ScreenSketch"
-    "Microsoft.SkypeApp"
+    #"Microsoft.SkypeApp"
     "Microsoft.windowscommunicationsapps"
     "Microsoft.WindowsFeedbackHub"
-    "Microsoft.XboxApp"
+    #"Microsoft.XboxApp"
 )
 
 foreach ($app in $apps) {
