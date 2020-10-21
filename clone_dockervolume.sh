@@ -13,14 +13,14 @@ fi
 
 # check if source volume exists
 docker volume ls | grep $1 > /dev/null 2>&1
-if [ "$?" != "1" ]; then
+if [ "$?" != "0" ]; then
   echo "source volume $1 doesn't exist"
   exit
 fi
 
 # check if destination volume exists
 docker volume ls | grep $2 > /dev/null 2>&1
-if [ "$?" = "1" ]; then
+if [ "$?" != "0" ]; then
   echo "creating volume $2"
   docker volume create --name $2 > /dev/null 2>&1
 fi
