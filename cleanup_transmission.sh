@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# docker
+#bin='docker exec transmission /usr/bin/transmission-remote'
+ 
 bin='/usr/bin/transmission-remote'
 
 # use if you have authentication enabled
